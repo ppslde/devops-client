@@ -1,4 +1,5 @@
 ﻿using DevOps.Core.Contracts;
+using DevOps.Infrastructure.AzureDevOps;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config) {
 
         services.AddScoped<IUserProfileClient, UserProfileClient>();
+        services.AddScoped<IOragnisationClient, OrganisationAccountClient>();
 
         return services;
     }

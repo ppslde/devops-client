@@ -12,6 +12,7 @@
 @inject AuthenticationStateProvider _authState
 
 <RadzenCard>
+    <RadzenTextBox @bind-Value="@Oraganisation" />
     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password with placeholder</RadzenText>
     <RadzenPassword Placeholder="Enter password..." @bind-Value="@Token" />
     <RadzenButton Variant="Variant.Flat" Click=@(args => Login()) Text="Login" />
@@ -20,6 +21,7 @@
 @code {
 
     public string? Token { get; set; }
+    public string? Oraganisation { get; set; }
 
     [CascadingParameter]
     public Task<AuthenticationState>? AuthTask { get; set; }

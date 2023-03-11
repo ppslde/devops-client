@@ -4,21 +4,24 @@ using System.Text.Json;
 using DevOps.Core.Contracts;
 using DevOps.Core.Models;
 
-namespace DevOps.Infrastructure;
+namespace DevOps.Infrastructure.AzureDevOps;
 
-internal class UserProfileClient : IUserProfileClient {
+internal class UserProfileClient : IUserProfileClient
+{
 
     private readonly ITokenProvider _tokenProvider;
 
     private const string url = "https://vssps.dev.azure.com/_apis/profile/profiles/me?api-version=7.0";
 
-    public UserProfileClient(ITokenProvider tokenProvider) {
+    public UserProfileClient(ITokenProvider tokenProvider)
+    {
 
         ArgumentNullException.ThrowIfNull(tokenProvider, nameof(ITokenProvider));
         _tokenProvider = tokenProvider;
     }
 
-    public async Task<UserProfile> GetUserProfile() {
+    public async Task<UserProfile> GetUserProfile()
+    {
 
         var token = await _tokenProvider.GetToken();
 
@@ -30,7 +33,8 @@ internal class UserProfileClient : IUserProfileClient {
         response.EnsureSuccessStatusCode();
         var json = await response.Content.ReadAsStringAsync();
 
-        var options = new JsonSerializerOptions {
+        var options = new JsonSerializerOptions
+        {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         };
         var result = JsonSerializer.Deserialize<UserProfile>(json, options);
