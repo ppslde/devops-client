@@ -5,13 +5,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DevOps.Infrastructure;
 
-public static class DependencyInjection {
+public static class DependencyInjection
+{
 
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config) {
+  public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
+  {
 
-        services.AddScoped<IUserProfileClient, UserProfileClient>();
-        services.AddScoped<IOragnisationClient, OrganisationAccountClient>();
+    services.AddScoped<IUserProfileClient, UserProfileClient>();
+    services.AddScoped<IOragnisationClient, OrganisationAccountClient>();
 
-        return services;
-    }
+    return services;
+  }
 }

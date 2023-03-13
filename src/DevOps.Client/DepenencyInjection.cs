@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace DevOps.Client;
 
-internal static class DependencyInjection {
+internal static class DependencyInjection
+{
 
-    public static IServiceCollection AddAuthenticationServices(this IServiceCollection services) {
+  public static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
+  {
 
-        services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-        services.AddScoped<ISessionDataStore, SessionDataStore>();
+    services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+    services.AddScoped<ISessionDataStore, SessionDataStore>();
 
-        services.AddScoped<ITokenProvider, SessionDataProvider>();
-        services.AddScoped<ISessionData, SessionDataProvider>();
+    services.AddScoped<ITokenProvider, SessionDataProvider>();
+    services.AddScoped<ISessionData, SessionDataProvider>();
 
-        return services;
-    }
+    return services;
+  }
 }

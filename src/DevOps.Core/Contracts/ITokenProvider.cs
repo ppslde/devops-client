@@ -1,5 +1,6 @@
 ﻿namespace DevOps.Core.Contracts;
 
-public interface ITokenProvider {
-    Task<string?> GetToken();
+public interface ITokenProvider
+{
+  Task<string?> GetToken();
 }

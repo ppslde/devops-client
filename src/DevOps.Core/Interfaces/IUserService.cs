@@ -2,7 +2,8 @@
 
 namespace DevOps.Core.Interfaces;
 
-public interface IUserService {
+public interface IUserService
+{
 
-    public Task<AppUser> GetCurrentUser();
+  public Task<AppUser> GetCurrentUser();
 }

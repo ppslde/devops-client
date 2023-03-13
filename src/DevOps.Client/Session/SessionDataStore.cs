@@ -2,38 +2,43 @@
 
 namespace DevOps.Client.Session;
 
-internal class SessionDataStore : ISessionDataStore {
+internal class SessionDataStore : ISessionDataStore
+{
 
-    private readonly ProtectedSessionStorage _protectedSessionStore;
+  private readonly ProtectedSessionStorage _protectedSessionStore;
 
-    public SessionDataStore(ProtectedSessionStorage protectedSessionStore) {
-        _protectedSessionStore = protectedSessionStore;
-    }
+  public SessionDataStore(ProtectedSessionStorage protectedSessionStore)
+  {
+    _protectedSessionStore = protectedSessionStore;
+  }
 
-    public async Task<T> Get<T>(string key) {
+  public async Task<T?> Get<T>(string key)
+  {
 
-        ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
+    ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
 
-        var result = await _protectedSessionStore.GetAsync<T>(key);
-        if (!result.Success)
-            return default;
+    var result = await _protectedSessionStore.GetAsync<T>(key);
+    if (!result.Success)
+      return default;
 
-        ArgumentNullException.ThrowIfNull(result.Value, nameof(ProtectedBrowserStorageResult<T>.Value));
-        return result.Value;
-    }
+    ArgumentNullException.ThrowIfNull(result.Value, nameof(ProtectedBrowserStorageResult<T>.Value));
+    return result.Value;
+  }
 
-    public async Task Set<T>(string key, T value) {
+  public async Task Set<T>(string key, T value)
+  {
 
-        ArgumentNullException.ThrowIfNull(value, nameof(value));
-        ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
+    ArgumentNullException.ThrowIfNull(value, nameof(value));
+    ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
 
-        await _protectedSessionStore.SetAsync(key, value);
-    }
+    await _protectedSessionStore.SetAsync(key, value);
+  }
 
-    public async Task Delete(string key) {
+  public async Task Delete(string key)
+  {
 
-        ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
+    ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
 
-        await _protectedSessionStore.DeleteAsync(key);
-    }
+    await _protectedSessionStore.DeleteAsync(key);
+  }
 }
