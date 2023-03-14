@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5D23DC33-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOps.Client", "src\DevOps.Client\DevOps.Client.csproj", "{F3021695-6E14-46D0-8A7C-113A687C252A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOps.Core", "src\DevOps.Core\DevOps.Core.csproj", "{136330A5-D4F5-4024-A5CE-D206E0E0119A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOps.Core", "src\DevOps.Core\DevOps.Core.csproj", "{136330A5-D4F5-4024-A5CE-D206E0E0119A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOps.Infrastructure", "src\DevOps.Infrastructure\DevOps.Infrastructure.csproj", "{799D3984-5E06-4F24-AC1E-BDFACC0E8CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOps.Core.Tests", "test\DevOps.Core.Tests\DevOps.Core.Tests.csproj", "{EE2833A4-03C9-4B4C-A81E-471240340141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOps.Core.Tests", "test\DevOps.Core.Tests\DevOps.Core.Tests.csproj", "{EE2833A4-03C9-4B4C-A81E-471240340141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOps.Infrastructure.Tests", "test\DevOps.Infrastructure.Tests\DevOps.Infrastructure.Tests.csproj", "{15E1269C-3A38-4C4D-ABAB-6EA59A2FBC75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevOps.Infrastructure.Tests", "test\DevOps.Infrastructure.Tests\DevOps.Infrastructure.Tests.csproj", "{15E1269C-3A38-4C4D-ABAB-6EA59A2FBC75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

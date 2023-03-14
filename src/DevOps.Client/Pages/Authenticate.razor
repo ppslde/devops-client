@@ -1,0 +1,59 @@
+@page "/authenticate"
+
+@using System.Security.Claims;
+@using DevOps.Client.Authentication;
+@using DevOps.Core.Interfaces;
+@using DevOps.Core.Models;
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject NavigationManager NavManager
+
+@inject IUserService _userService
+@inject ISessionData _sessionData
+@inject AuthenticationStateProvider _authState
+
+
+<RadzenTemplateForm TItem="AuthModel" Data=@model Submit=@OnSubmit >
+  <RadzenFieldset Text="Login information">
+    <div class="row mb-5">
+      <div class="col-md-2">
+        <RadzenLabel Text="Organisation" />
+      </div>
+      <div class="col">
+        <RadzenTextBox style="display: block"  Placeholder="Your organisation name..." Name="Organisation" @bind-Value=@model.Organisation class="w-100" />
+        <RadzenRequiredValidator Component="Organisation" Text="Name of your AzureDevops organisation is required" Popup=true />
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-2">
+        <RadzenLabel Text="Personal Access Token" />
+      </div>
+      <div class="col">
+        <RadzenPassword style="display: block" Placeholder="Your PAT..." Name="Token" @bind-Value=@model.Token class="w-100" />
+        <RadzenRequiredValidator Component="Token" Text="Your PAT is required" Popup=true />
+      </div>
+    </div>
+    <RadzenButton ButtonType="ButtonType.Submit" Text="Login"></RadzenButton>
+  </RadzenFieldset>
+</RadzenTemplateForm>
+
+@code {
+
+
+AuthModel model = new();
+
+async Task OnSubmit(AuthModel model)
+{
+    await _sessionData.SetAuthData(model);
+
+    AppUser? user = await _userService.GetCurrentUser();
+
+    if (user == null)
+    {
+        await _sessionData.Clear();
+        return;
+    }
+
+    var authState = await((CustomAuthenticationStateProvider)_authState).ChangeUser(user, "Associate");
+    NavManager.NavigateTo("/");
+}
+}

@@ -1,0 +1,48 @@
+﻿@using System.Security.Claims;
+@inherits LayoutComponentBase
+
+@inject AuthenticationStateProvider _authState
+
+<PageTitle>Deployment Center</PageTitle>
+
+<RadzenLayout>
+  <RadzenHeader class="rz-display-flex justify-content-end">
+    <AuthorizeView>
+      <Authorized>
+        <div class="d-flex align-items-center">
+          <RadzenLabel Text="@claimUser?.Identity?.Name" />
+          <RadzenImage Path="@imageDataURL" Class="rounded-circle float-start ms-3 me-3" Style="width: 30px; height: 30px;" />
+        </div>
+      </Authorized>
+    </AuthorizeView>
+  </RadzenHeader>
+  <RadzenSidebar>
+    <NavigationMenu />
+  </RadzenSidebar>
+  <RadzenBody>
+    @Body
+  </RadzenBody>
+</RadzenLayout>
+
+@code {
+
+  [CascadingParameter]
+  public Task<AuthenticationState>? AuthTask { get; set; }
+
+  private ClaimsPrincipal? claimUser;
+
+  private string? imageDataURL;
+
+  protected override Task OnInitializedAsync()
+  {
+    _authState.AuthenticationStateChanged += async t =>
+    {
+      var authState = await t;
+      claimUser = authState.User;
+      imageDataURL = claimUser.Claims.SingleOrDefault(c => c.Type == "Avatar")?.Value ?? "";
+      StateHasChanged();
+    };
+
+    return Task.CompletedTask;
+  }
+}
