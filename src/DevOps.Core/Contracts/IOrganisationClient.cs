@@ -2,7 +2,7 @@
 
 namespace DevOps.Core.Contracts;
 
-public interface IOragnisationClient
+public interface IOrganisationClient
 {
   Task<IEnumerable<Organisation>> GetAccounts(UserProfile profile);
 }
