@@ -38,39 +38,22 @@
 
 @code {
 
-  class AuthModel
-  {
-    public string Token { get; set; }
-    public string Organisation { get; set; }
-  }
 
-  //[CascadingParameter]
-  //public Task<AuthenticationState>? AuthTask { get; set; }
+AuthModel model = new();
 
-  //private ClaimsPrincipal? claimUser;
+async Task OnSubmit(AuthModel model)
+{
+    await _sessionData.SetAuthData(model);
 
-  AuthModel model = new();
-
-  async Task OnSubmit(AuthModel model)
-  {
-    await _sessionData.SetToken(model.Token);
     AppUser? user = await _userService.GetCurrentUser();
 
     if (user == null)
-      return;
+    {
+        await _sessionData.Clear();
+        return;
+    }
 
     var authState = await((CustomAuthenticationStateProvider)_authState).ChangeUser(user, "Associate");
-    //claimUser = authState.User;
-
     NavManager.NavigateTo("/");
-  }
-
-  //protected async override Task OnInitializedAsync()
-  //{
-  //  if (AuthTask == null)
-  //    return;
-
-  //  var authState = await AuthTask;
-  //  claimUser = authState.User;
-  //}
+}
 }

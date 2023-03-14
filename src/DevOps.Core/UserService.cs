@@ -7,20 +7,19 @@ namespace DevOps.Core;
 internal class UserService : IUserService
 {
   private readonly IUserProfileClient _profileClient;
-  private readonly IOragnisationClient _oragnisationClient;
+  private readonly IAvatarClient _avatarClient;
 
-  public UserService(IUserProfileClient profileClient, IOragnisationClient oragnisationClient)
+  public UserService(IUserProfileClient profileClient, IAvatarClient avatarClient)
   {
     _profileClient = profileClient;
-    _oragnisationClient = oragnisationClient;
+    _avatarClient = avatarClient;
   }
 
   public async Task<AppUser?> GetCurrentUser()
   {
     UserProfile profile = await _profileClient.GetUserProfile();
+    //var avatar = await _avatarClient.GetAvatar(profile);
 
-    await _oragnisationClient.GetAccounts(profile);
-
-    return null;
+    return new(profile, null);
   }
 }

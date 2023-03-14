@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace DevOps.Infrastructure.AzureDevOps;
 
-internal class OrganisationAccountClient : IOragnisationClient
+internal class OrganisationAccountClient : IOrganisationClient
 {
   private readonly ITokenProvider _tokenProvider;
 
@@ -19,7 +19,7 @@ internal class OrganisationAccountClient : IOragnisationClient
     _tokenProvider = tokenProvider;
   }
 
-  public async Task<IEnumerable<Oragnisation>> GetAccounts(UserProfile profile)
+  public async Task<IEnumerable<Organisation>> GetAccounts(UserProfile profile)
   {
     var token = await _tokenProvider.GetToken();
 
@@ -47,6 +47,6 @@ internal class OrganisationAccountClient : IOragnisationClient
   private class Response
   {
     public int Count { get; set; }
-    public Oragnisation[]? Value { get; set; }
+    public Organisation[]? Value { get; set; }
   }
 }

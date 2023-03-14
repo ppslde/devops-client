@@ -1,3 +1,3 @@
 ﻿namespace DevOps.Core.Models;
 
-public record AppUser(string Email, string DisplayName, byte[] Avatar);
+public record AppUser(UserProfile Profile, Avatar Avatar);

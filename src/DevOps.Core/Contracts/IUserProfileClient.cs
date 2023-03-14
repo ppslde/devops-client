@@ -1,9 +1,8 @@
 ﻿using DevOps.Core.Models;
 
-namespace DevOps.Core.Contracts
+namespace DevOps.Core.Contracts;
+
+public interface IUserProfileClient
 {
-  public interface IUserProfileClient
-  {
-    Task<UserProfile> GetUserProfile();
-  }
+  Task<UserProfile> GetUserProfile();
 }

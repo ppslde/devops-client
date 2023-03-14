@@ -12,7 +12,8 @@ public static class DependencyInjection
   {
 
     services.AddScoped<IUserProfileClient, UserProfileClient>();
-    services.AddScoped<IOragnisationClient, OrganisationAccountClient>();
+    services.AddScoped<IOrganisationClient, OrganisationAccountClient>();
+    services.AddScoped<IAvatarClient, AvatarClient>();
 
     return services;
   }

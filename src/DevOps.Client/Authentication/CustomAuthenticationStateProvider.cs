@@ -18,9 +18,9 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
     var identity = new ClaimsIdentity(new[]
     {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.DisplayName),
-            new Claim("Avatar", string.Format("data:image/png;base64,{0}", Convert.ToBase64String(user.Avatar)))
+            new Claim(ClaimTypes.Email, user.Profile.EmailAddress),
+            new Claim(ClaimTypes.Name, user.Profile.DisplayName),
+            //new Claim("Avatar", string.Format("data:image/png;base64,{0}", Convert.ToBase64String(user.Avatar.Value.)))
         }, "Authentication type");
     identity.AddClaims(roles.Select(r => new Claim(ClaimTypes.Role, r)));
 

@@ -1,11 +1,10 @@
-namespace DevOps.Core.Tests
-{
-  public class UnitTest1
-  {
-    [Fact]
-    public void Test1()
-    {
+namespace DevOps.Core.Tests;
 
-    }
+public class UnitTest1
+{
+  [Fact]
+  public void Test1()
+  {
+
   }
 }

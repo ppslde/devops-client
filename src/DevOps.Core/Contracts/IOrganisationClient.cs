@@ -4,5 +4,5 @@ namespace DevOps.Core.Contracts;
 
 public interface IOragnisationClient
 {
-  Task<IEnumerable<Oragnisation>> GetAccounts(UserProfile profile);
+  Task<IEnumerable<Organisation>> GetAccounts(UserProfile profile);
 }
